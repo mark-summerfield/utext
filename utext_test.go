@@ -3,6 +3,7 @@
 package utext
 
 import (
+	"fmt"
 	"path/filepath"
 	"runtime"
 	"testing"
@@ -183,4 +184,41 @@ func TestStringForSlice(t *testing.T) {
 	if actual != expected {
 		t.Errorf("expected %s got %s", expected, actual)
 	}
+}
+
+func ExampleCentered() {
+	s := Centered("The Title", ' ', 15)
+	fmt.Printf("%q\n", s)
+	s = Centered(" Heading ", '*', 15)
+	fmt.Printf("%q\n", s)
+	s = Centered(" Heading ", '=', 16)
+	fmt.Printf("%q\n", s)
+	s = Centered(" Heading ", '-', 17)
+	fmt.Printf("%q\n", s)
+	s = Centered("Too wide to center", '#', 12)
+	fmt.Printf("%q\n", s)
+	// Output:
+	// "   The Title   "
+	// "*** Heading ***"
+	// "=== Heading ===="
+	// "---- Heading ----"
+	// "Too wide to center"
+}
+
+func ExampleElideMiddle() {
+	s := ElideMiddle("This is short enough", 24)
+	fmt.Printf("%q\n", s)
+	t := "This is now far too long"
+	for i := 14; i < 20; i++ {
+		s = ElideMiddle(t, i)
+		fmt.Printf("%d: %q\n", i, s)
+	}
+	// Output:
+	// "This is short enough"
+	// 14: "This is…o long"
+	// 15: "This is …o long"
+	// 16: "This is …oo long"
+	// 17: "This is n…oo long"
+	// 18: "This is n…too long"
+	// 19: "This is no…too long"
 }
