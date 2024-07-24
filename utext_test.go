@@ -37,7 +37,7 @@ func Benchmark_CleanWhitespace(b *testing.B) {
 }
 
 func TestLcPrefix1(t *testing.T) {
-	items := []string{"/home/mark/app/go/gong",
+	items := []string{"/home/mark/app/go/utext",
 		"/home/mark/app/py/accelhints", "/home/mark/app/rs"}
 	if runtime.GOOS == "windows" {
 		for i := range len(items) {
@@ -56,7 +56,7 @@ func TestLcPrefix1(t *testing.T) {
 }
 
 func TestLcPrefix2(t *testing.T) {
-	items := []string{"/users/mark/app/go/gong",
+	items := []string{"/users/mark/app/go/utext",
 		"/Users/mark/app/py/accelhints", "/home/mark/app/rs"}
 	if runtime.GOOS == "windows" {
 		for i := range len(items) {
@@ -75,7 +75,7 @@ func TestLcPrefix2(t *testing.T) {
 }
 
 func TestLcPrefix3(t *testing.T) {
-	items := []string{"C:\\users\\mark\\app\\go\\gong",
+	items := []string{"C:\\users\\mark\\app\\go\\utext",
 		"/Users/mark/app/py/accelhints"}
 	prefix := LongestCommonPrefix(items)
 	if prefix != "" {
@@ -84,7 +84,7 @@ func TestLcPrefix3(t *testing.T) {
 }
 
 func TestLcPrefix4(t *testing.T) {
-	items := []string{"mark/app/go/gong", "mark/app/py/accelhints",
+	items := []string{"mark/app/go/utext", "mark/app/py/accelhints",
 		"mark/app/rs"}
 	if runtime.GOOS == "windows" {
 		for i := range len(items) {

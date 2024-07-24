@@ -8,7 +8,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/mark-summerfield/unumber"
+	"github.com/mark-summerfield/ureal"
 )
 
 //go:embed Version.dat
@@ -32,7 +32,7 @@ func CleanWhitespace(text string) string {
 	return strings.Join(strings.Fields(text), " ")
 }
 
-func Commas[I unumber.Integer](i I) string {
+func Commas[I ureal.Integer](i I) string {
 	sign := ""
 	value := fmt.Sprint(i) // Can't use Itoa() with Integer
 	if value[0] == '-' {
@@ -64,7 +64,7 @@ func ElideMiddle(s string, width int) string {
 // LessFold returns true if string a is case-insensitively less than string
 // b; otherwise returns false.
 // This function can also be used to sort a slice of strings, e.g.,
-// `slices.SortFunc(mystrings, gong.LessFold)`.
+// `slices.SortFunc(mystrings, utext.LessFold)`.
 func LessFold(a, b string) bool {
 	return strings.ToUpper(a) < strings.ToUpper(b)
 }
