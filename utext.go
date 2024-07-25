@@ -1,5 +1,6 @@
 // Copyright © 2024 Mark Summerfield. All rights reserved.
 
+// This package provides some text-related functions.
 package utext
 
 import (
@@ -7,8 +8,6 @@ import (
 	"fmt"
 	"strings"
 	"unicode/utf8"
-
-	"github.com/mark-summerfield/ureal"
 )
 
 //go:embed Version.dat
@@ -30,19 +29,6 @@ func Centered(s string, pad rune, width int) string {
 
 func CleanWhitespace(text string) string {
 	return strings.Join(strings.Fields(text), " ")
-}
-
-func Commas[I ureal.Integer](i I) string {
-	sign := ""
-	value := fmt.Sprint(i) // Can't use Itoa() with Integer
-	if value[0] == '-' {
-		sign = "-"
-		value = value[1:]
-	}
-	for i := len(value) - 3; i >= 0; i -= 3 {
-		value = value[:i] + "," + value[i:]
-	}
-	return sign + strings.TrimPrefix(value, ",")
 }
 
 // ElideMiddle returns s at most width runes long. If s is longer than
