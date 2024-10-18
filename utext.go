@@ -1,6 +1,8 @@
 // Copyright © 2024 Mark Summerfield. All rights reserved.
 
-// This package provides some text-related functions.
+// This package provides some text-related functions. ([TOC])
+//
+// [TOC]: file:///home/mark/app/golib/doc/index.html
 package utext
 
 import (
