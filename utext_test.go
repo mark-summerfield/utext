@@ -37,8 +37,10 @@ func Benchmark_CleanWhitespace(b *testing.B) {
 }
 
 func TestLcPrefix1(t *testing.T) {
-	items := []string{"/home/mark/app/go/utext",
-		"/home/mark/app/py/accelhints", "/home/mark/app/rs"}
+	items := []string{
+		"/home/mark/app/go/utext",
+		"/home/mark/app/py/accelhints", "/home/mark/app/rs",
+	}
 	if runtime.GOOS == "windows" {
 		for i := range len(items) {
 			items[i] = filepath.FromSlash(items[i])
@@ -56,8 +58,10 @@ func TestLcPrefix1(t *testing.T) {
 }
 
 func TestLcPrefix2(t *testing.T) {
-	items := []string{"/users/mark/app/go/utext",
-		"/Users/mark/app/py/accelhints", "/home/mark/app/rs"}
+	items := []string{
+		"/users/mark/app/go/utext",
+		"/Users/mark/app/py/accelhints", "/home/mark/app/rs",
+	}
 	if runtime.GOOS == "windows" {
 		for i := range len(items) {
 			items[i] = filepath.FromSlash(items[i])
@@ -75,8 +79,10 @@ func TestLcPrefix2(t *testing.T) {
 }
 
 func TestLcPrefix3(t *testing.T) {
-	items := []string{"C:\\users\\mark\\app\\go\\utext",
-		"/Users/mark/app/py/accelhints"}
+	items := []string{
+		"C:\\users\\mark\\app\\go\\utext",
+		"/Users/mark/app/py/accelhints",
+	}
 	prefix := LongestCommonPrefix(items)
 	if prefix != "" {
 		t.Errorf("expected \"\" got %s", prefix)
@@ -84,8 +90,10 @@ func TestLcPrefix3(t *testing.T) {
 }
 
 func TestLcPrefix4(t *testing.T) {
-	items := []string{"mark/app/go/utext", "mark/app/py/accelhints",
-		"mark/app/rs"}
+	items := []string{
+		"mark/app/go/utext", "mark/app/py/accelhints",
+		"mark/app/rs",
+	}
 	if runtime.GOOS == "windows" {
 		for i := range len(items) {
 			items[i] = filepath.FromSlash(items[i])
@@ -144,6 +152,22 @@ func TestStringForSlice(t *testing.T) {
 	actual := StringForSlice(items)
 	if actual != expected {
 		t.Errorf("expected %s got %s", expected, actual)
+	}
+}
+
+func TestTitleCase(t *testing.T) {
+	expected := "This And That Or Else"
+	actual := TitleCase("THIS AND THAT OR ELSE")
+	if actual != expected {
+		t.Errorf("expected %q got %q", expected, actual)
+	}
+	actual = TitleCase("this and that or else")
+	if actual != expected {
+		t.Errorf("expected %q got %q", expected, actual)
+	}
+	actual = TitleCase(expected)
+	if actual != expected {
+		t.Errorf("expected %q got %q", expected, actual)
 	}
 }
 

@@ -1,6 +1,6 @@
 // Copyright © 2024 Mark Summerfield. All rights reserved.
 
-// This package provides some text-related functions. ([TOC])
+// ([TOC]) This package provides some text-related functions.
 //
 // [TOC]: file:///home/mark/app/golib/doc/index.html
 package utext
@@ -8,6 +8,7 @@ package utext
 import (
 	_ "embed"
 	"fmt"
+	"regexp"
 	"strings"
 	"unicode/utf8"
 )
@@ -90,4 +91,14 @@ func StringForSlice[T any](x []T) string {
 		items = append(items, fmt.Sprintf("%v ", n))
 	}
 	return strings.TrimSpace(strings.Join(items, ""))
+}
+
+// TitleCase returns the given text with the first letter of every "word"
+// uppercased and the rest lowercased.
+func TitleCase(text string) string {
+	rx := regexp.MustCompile(`\b(\pL)`)
+	return rx.ReplaceAllStringFunc(strings.ToLower(text),
+		func(x string) string {
+			return strings.ToUpper(x)
+		})
 }
