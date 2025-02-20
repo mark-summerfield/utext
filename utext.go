@@ -83,14 +83,14 @@ outer:
 	return string(prefix)
 }
 
-// StringForSlice returns a string of space-separated items.
+// StringForSlice returns a string of sep-separated items.
 // Mostly useful for tests.
-func StringForSlice[T any](x []T) string {
+func StringForSlice[T any](x []T, sep string) string {
 	items := make([]string, len(x))
-	for _, n := range x {
-		items = append(items, fmt.Sprintf("%v ", n))
+	for _, v := range x {
+		items = append(items, fmt.Sprint(v))
 	}
-	return strings.TrimSpace(strings.Join(items, ""))
+	return strings.TrimSpace(strings.Join(items, sep))
 }
 
 // TitleCase returns the given text with the first letter of every "word"

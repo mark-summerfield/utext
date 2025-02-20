@@ -149,7 +149,7 @@ func TestLessFold(t *testing.T) {
 func TestStringForSlice(t *testing.T) {
 	items := []int{1, 2, 4, 8, 16, -9, -7, 0, 12}
 	expected := "1 2 4 8 16 -9 -7 0 12"
-	actual := StringForSlice(items)
+	actual := StringForSlice(items, " ")
 	if actual != expected {
 		t.Errorf("expected %s got %s", expected, actual)
 	}
