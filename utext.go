@@ -86,7 +86,7 @@ outer:
 // StringForSlice returns a string of sep-separated items.
 // Mostly useful for tests.
 func StringForSlice[T any](x []T, sep string) string {
-	items := make([]string, len(x))
+	items := make([]string, 0, len(x))
 	for _, v := range x {
 		items = append(items, fmt.Sprint(v))
 	}
