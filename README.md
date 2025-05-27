@@ -1,4 +1,4 @@
-# uterm
+# utext
 
 This package provides some text-related functions for Go.
 
